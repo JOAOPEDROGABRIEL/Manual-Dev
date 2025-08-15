@@ -799,7 +799,15 @@ console.log(objUsuario.nome);
             const chatWindow = document.getElementById('chat-window');
             const chatInput = document.getElementById('chat-input');
             const sendButton = document.getElementById('send-button');
-            const apiKey = ""; // API Key is handled by the environment, leave empty.
+            
+            // --- AVISO DE SEGURANÇA ---
+            // 1. Crie sua chave de API no Google AI Studio (aistudio.google.com).
+            // 2. RESTRINJA a chave no Google Cloud Console para aceitar requisições
+            //    apenas do seu domínio do GitHub Pages (ex: seu-usuario.github.io/*).
+            // 3. Cole a chave restrita abaixo.
+            // NUNCA exponha uma chave de API irrestrita em código público.
+            const apiKey = "AIzaSyC78HwMqt_ZZ_PjwJY8hmWcXz_PC5gopY8"; 
+
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
             function addMessage(text, sender) {
@@ -808,6 +816,14 @@ console.log(objUsuario.nome);
                 bubble.textContent = text;
                 chatWindow.appendChild(bubble);
                 chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            // Verifica se a chave da API foi inserida
+            if (apiKey === "SUA_CHAVE_API_AQUI" || !apiKey) {
+                chatInput.disabled = true;
+                sendButton.disabled = true;
+                chatInput.placeholder = "Chave da API não configurada.";
+                addMessage("O chatbot está desativado. Para habilitá-lo, siga as instruções no código-fonte para configurar uma chave de API do Gemini.", 'ai');
             }
 
             function setLoading(isLoading) {
@@ -843,7 +859,13 @@ console.log(objUsuario.nome);
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-                    if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+                    if (!response.ok) {
+                        // Fornece uma mensagem de erro mais específica para 403
+                        if (response.status === 403) {
+                             throw new Error(`API error 403: A chave de API não tem permissão para ser usada a partir deste site. Verifique as restrições no Google Cloud Console.`);
+                        }
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
                     const result = await response.json();
                     
                     const aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -851,7 +873,7 @@ console.log(objUsuario.nome);
 
                 } catch (error) {
                     console.error("Error calling Gemini API:", error);
-                    addMessage('Ocorreu um erro ao tentar me comunicar. Verifique o console para mais detalhes.', 'ai');
+                    addMessage(`Ocorreu um erro: ${error.message}`, 'ai');
                 } finally {
                     setLoading(false);
                 }
