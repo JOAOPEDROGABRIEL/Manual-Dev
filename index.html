@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Programação: C# e MySQL</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for the app */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Style for code blocks */
+        pre {
+            background-color: #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+        }
+        /* Active nav link style */
+        .nav-link.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+        }
+        /* Chat bubble styles */
+        .chat-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+        }
+        .user-bubble {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .ai-bubble {
+            background-color: #374151; /* gray-700 */
+            color: #d1d5db; /* gray-300 */
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 antialiased">
+
+    <div class="min-h-screen flex flex-col">
+        <!-- Header and Navigation -->
+        <header class="bg-gray-800 shadow-md sticky top-0 z-20">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-white">Manual Dev</h1>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-2">
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white active" data-target="inicio">Início</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="csharp">C#</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="mysql">MySQL</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="api">API e BD</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="git">Git e GitHub</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="compendio">Compêndio</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="chatbot">Tira-Dúvidas</a>
+                        </div>
+                    </div>
+                     <div class="md:hidden">
+                        <select id="mobile-nav" class="bg-gray-700 text-white rounded-md p-2">
+                            <option value="inicio">Início</option>
+                            <option value="csharp">C#</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="api">API e BD</option>
+                            <option value="git">Git e GitHub</option>
+                            <option value="compendio">Compêndio</option>
+                            <option value="chatbot">Tira-Dúvidas</option>
+                        </select>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+            
+            <!-- Section: Início -->
+            <section id="inicio" class="content-section">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Bem-vindo ao Manual Interativo de C# e MySQL!</h2>
+                <p class="text-lg text-gray-300 mb-6">Este guia foi expandido para te levar do zero à criação da sua primeira API com C#, conectada a um banco de dados MySQL, e gerenciada com Git e GitHub.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-white">O que você vai aprender?</h3>
+                        <ul class="list-disc list-inside text-gray-400 space-y-2">
+                            <li>Instalar e configurar seu ambiente de desenvolvimento C#.</li>
+                            <li>Os fundamentos da linguagem C# e da Orientação a Objetos.</li>
+                            <li>Comandos essenciais de SQL e o papel de um SGBD.</li>
+                            <li>Como uma API conecta o código C# ao banco de dados.</li>
+                            <li>Usar Git e GitHub para versionar e compartilhar seu código.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-white">Como usar este manual?</h3>
+                        <p class="text-gray-400">Navegue pelas seções em ordem para uma jornada de aprendizado estruturada. Se tiver qualquer dúvida, use a seção <strong>Tira-Dúvidas</strong> para conversar com nossa IA assistente!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: C# Básico -->
+            <section id="csharp" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Fundamentos de C#</h2>
+                <p class="text-gray-300 mb-6">C# é uma linguagem moderna e poderosa. Vamos começar com o essencial para você poder construir suas aplicações.</p>
+                
+                <h3 class="text-2xl font-semibold mt-8 mb-3">1. Instalação e Ambiente</h3>
+                <p class="mb-4">Para começar a programar em C#, você precisa do <strong>.NET SDK</strong> (Software Development Kit). Ele inclui o compilador e tudo o que é necessário para rodar suas aplicações.</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+                    <li><strong>Instalação:</strong> Baixe o .NET SDK no <a href="https://dotnet.microsoft.com/download" target="_blank" class="text-indigo-400 hover:underline">site oficial da Microsoft</a>. A instalação é simples e direta.</li>
+                    <li><strong>IDEs (Ambiente de Desenvolvimento):</strong> Você precisa de um editor de código. Os mais comuns são:
+                        <ul class="list-disc list-inside ml-6 mt-2">
+                            <li><strong>Visual Studio:</strong> A IDE mais completa da Microsoft, ideal para projetos grandes.</li>
+                            <li><strong>Visual Studio Code (VS Code):</strong> Um editor leve, rápido e muito popular, com extensões que o tornam poderoso para o desenvolvimento C#.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3 class="text-2xl font-semibold mt-6 mb-3">2. Variáveis e Tipos de Dados</h3>
+                <p class="mb-4">Variáveis são como "caixas" que guardam informações. Cada caixa tem um tipo, que define o que pode ser armazenado nela.</p>
+                <pre><code class="language-csharp">// Tipos de dados comuns em C#
+string nome = "Maria";       // Texto
+int idade = 30;              // Números inteiros
+double altura = 1.75;        // Números com casas decimais
+bool eEstudante = true;      // Verdadeiro ou Falso
+</code></pre>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">3. Estruturas de Controle (if/else)</h3>
+                <p class="mb-4">Permitem que seu programa tome decisões com base em condições.</p>
+                <pre><code class="language-csharp">if (idade >= 18)
+{
+    Console.WriteLine("É maior de idade.");
+}
+else
+{
+    Console.WriteLine("É menor de idade.");
+}
+</code></pre>
+                <p class="mt-4 mb-2"><strong>Importante:</strong> Sempre use chaves `{}` para delimitar blocos de código, mesmo que haja apenas uma linha dentro do bloco.</p>
+                
+                <h3 class="text-2xl font-semibold mt-8 mb-3">4. Estruturas de Repetição (for/foreach/while/do)</h3>
+                <p class="mb-4">São estruturas onde repetem um determinado bloco de código por 'n' vezes, geralmente esta estrutura vem acompanhada de um índice ou valor booleano para indicar a parada do código em execução.</p>
+                <p class="mt-4 mb-2"><strong>Exemplo de um laço `for`:</strong></p>
+                <pre><code class="language-csharp">for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Contagem: {i}");
+}
+</code></pre>
+                <p class="mt-4 mb-2">Esse laço irá imprimir os números de 0 a 4 no console.</p>
+
+                <p class="mt-4 mb-2"><strong>Exemplo de um laço `foreach`:</strong></p>
+                <pre><code class="language-csharp">foreach (var item in colecao)
+{
+    Console.WriteLine($"Item: {item}");
+}
+</code></pre>
+                <p class="mt-4 mb-2">Esse laço irá iterar sobre cada item em uma coleção (como um array ou lista) e imprimir seu valor.</p>
+
+                <p class="mt-4 mb-2"><strong>Exemplo de um laço `while`:</strong></p>
+                <pre><code class="language-csharp">int i = 0;
+while (i < 5)
+{
+    Console.WriteLine($"Contagem: {i}");
+    i++;
+}
+</code></pre>
+                <p class="mt-4 mb-2">Este laço imprimirá "Contagem: 0" até "Contagem: 4" no console. É crucial incrementar a variável `i` dentro do laço para evitar um loop infinito.</p>
+
+                <p class="mt-4 mb-2"><strong>Exemplo de um laço `do while`:</strong></p>
+                <pre><code class="language-csharp">int i = 0;
+do
+{
+    Console.WriteLine($"Contagem: {i}");
+    i++;
+} while (i < 5);
+</code></pre>
+                <p class="mt-4 mb-2">Este laço imprimirá "Contagem: 0" até "Contagem: 4" no console. Assim como no `while`, é crucial incrementar a variável `i` dentro do laço para evitar um loop infinito. A principal diferença é que o `do while` garante que o bloco de código seja executado pelo menos uma vez.</p>
+
+                
+                <h3 class="text-2xl font-semibold mt-8 mb-3">5. Classes e Objetos: A Base da Orientação a Objetos</h3>
+                <p class="mb-4">Pense em uma <strong>Classe</strong> como a planta de uma casa: ela define a estrutura (quantos quartos, banheiros, etc.). Um <strong>Objeto</strong> é a casa construída a partir dessa planta. Você pode construir várias casas (objetos) a partir da mesma planta (classe).</p>
+                <p class="mb-4">Em programação, uma classe agrupa variáveis (propriedades) e funções (métodos) que descrevem algo. Por exemplo, uma classe `Usuario`:</p>
+                <p class="mb-4"><strong>Importante Diferenciar:</strong></p>
+                <p class="mb-4">Classe é a definição, Objeto é a instância, Propriedades são as características do objeto (dados armazenados/contidos), Métodos são as ações que um objeto pode realizar.</p>
+                <pre><code class="language-csharp">// A "planta" do nosso usuário
+public class Usuario
+{
+    // Propriedades (as características)
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Email { get; set; }
+
+    // Um método (uma ação que o usuário pode fazer)
+    public void Apresentar()
+    {
+        Console.WriteLine($"Olá, meu nome é {Nome} e meu email é {Email}.");
+    }
+}
+
+// Criando um objeto (a "casa construída") a partir da classe
+Usuario novoUsuario = new Usuario();
+novoUsuario.Id = 1;
+novoUsuario.Nome = "Ana";
+novoUsuario.Email = "ana@email.com";
+
+novoUsuario.Apresentar(); // Saída: Olá, meu nome é Ana e meu email é ana@email.com.
+</code></pre>
+                <p class="mt-4"><strong>Relação com o Banco de Dados:</strong> Geralmente, uma classe como `Usuario` representa uma tabela no banco de dados. Cada objeto (`novoUsuario`) corresponde a uma <strong>linha</strong> nessa tabela, e cada propriedade (`Id`, `Nome`) corresponde a uma <strong>coluna</strong>.</p>
+                
+                <h3 class="text-2xl font-semibold mt-8 mb-3">6. Modificadores de Acesso</h3>
+                <p class="mb-4">Modificadores de acesso controlam onde seu código pode ser acessado. Os mais comuns são:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><strong><code>public</code>:</strong> Acessível de qualquer lugar.</li>
+                    <li><strong><code>private</code>:</strong> Acessível apenas dentro da própria classe.</li>
+                    <li><strong><code>protected</code>:</strong> Acessível dentro da própria classe e por classes que herdam dela.</li>
+                    <li><strong><code>internal</code>:</strong> Acessível em qualquer lugar dentro do mesmo assembly (projeto).</li>
+                </ul>
+                <pre><code class="language-csharp">public class ExemploAcesso
+{
+    public string Publico = "Eu sou público!";
+    private string Privado = "Eu sou privado!";
+
+    public void MostrarPrivado()
+    {
+        Console.WriteLine(Privado); // Pode acessar aqui
+    }
+}
+
+// Fora da classe
+ExemploAcesso obj = new ExemploAcesso();
+Console.WriteLine(obj.Publico); // Acessível
+// Console.WriteLine(obj.Privado); // ERRO: Não acessível
+</code></pre>
+                <p class="mt-4 mb-2">Usar o modificador de acesso correto é fundamental para a segurança e organização do seu código.</p>
+
+
+                <p class="mt-4 mb-2">Mais Detalhes sobre C# disponível no <a class="text-blue-400 underline" href="https://learn.microsoft.com/dotnet/csharp/">Microsoft Learn</a></p>
+
+
+            </section>
+
+            <!-- Section: MySQL Básico -->
+            <section id="mysql" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Fundamentos de MySQL</h2>
+                <p class="text-gray-300 mb-6">MySQL é o sistema que vai armazenar e gerenciar os dados da sua aplicação.</p>
+                
+                <h3 class="text-2xl font-semibold mt-8 mb-3">1. O que é um SGBD?</h3>
+                <p class="mb-4">MySQL é um <strong>SGBD (Sistema de Gerenciamento de Banco de Dados)</strong>. Pense nele como um "organizador" super eficiente para seus dados. Suas principais funções são:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><strong>Armazenar dados</strong> de forma segura e estruturada (em tabelas).</li>
+                    <li><strong>Recuperar dados</strong> rapidamente quando a aplicação solicita.</li>
+                    <li><strong>Garantir a consistência</strong> e a integridade dos dados (evitar informações duplicadas ou inválidas).</li>
+                    <li><strong>Controlar o acesso</strong>, definindo quem pode ver ou modificar quais informações.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-3">2. Comandos SQL Essenciais</h3>
+                <p class="mb-4">SQL é a linguagem que usamos para "conversar" com o SGBD. Aqui estão os comandos básicos para manipular uma tabela `usuarios`:</p>
+                <p class="mb-2"><strong>SELECT:</strong> Para buscar dados.</p>
+                <pre><code class="language-sql">-- Busca todos os usuários da cidade de 'São Paulo'
+SELECT nome, email FROM usuarios WHERE cidade = 'São Paulo';</code></pre>
+                
+                <p class="mt-4 mb-2"><strong>INSERT:</strong> Para adicionar novos dados.</p>
+                <pre><code class="language-sql">-- Adiciona um novo usuário à tabela
+INSERT INTO usuarios (nome, email) VALUES ('Carlos', 'carlos@email.com');</code></pre>
+
+                <p class="mt-4 mb-2"><strong>UPDATE:</strong> Para atualizar dados existentes.</p>
+                <pre><code class="language-sql">-- Atualiza o email do usuário 'Carlos'
+UPDATE usuarios SET email = 'novo.email@email.com' WHERE nome = 'Carlos';</code></pre>
+
+                <p class="mt-4 mb-2"><strong>DELETE:</strong> Para remover dados.</p>
+                <pre><code class="language-sql">-- Remove o usuário 'Carlos' da tabela
+DELETE FROM usuarios WHERE nome = 'Carlos';</code></pre>
+            </section>
+
+            <!-- Section: API e Banco de Dados -->
+            <section id="api" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Conectando Tudo: API e Banco de Dados</h2>
+                <p class="text-gray-300 mb-6">A API (Application Programming Interface) é a ponte que conecta seu site (frontend) ao seu banco de dados (backend). Ela recebe pedidos do site, busca ou salva informações no banco de dados e devolve uma resposta.</p>
+                
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Como funciona a comunicação?</h3>
+                <p class="mb-4">Imagine que você quer ver a lista de todos os usuários cadastrados no seu site. O fluxo é o seguinte:</p>
+                <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                    <li><strong>Requisição (Frontend → API):</strong> Seu site (HTML/CSS/JS) envia uma requisição HTTP para um endereço da sua API, por exemplo, `GET /api/usuarios`.</li>
+                    <li><strong>Processamento (API em C#):</strong> Sua API, escrita em C#, recebe essa requisição. O código C# entende que precisa buscar todos os usuários.</li>
+                    <li><strong>Conexão com o BD (API → BD):</strong> A API usa uma biblioteca (como a `MySql.Data`) para abrir uma conexão com o banco de dados MySQL.</li>
+                    <li><strong>Consulta SQL (API → BD):</strong> A API envia o comando `SELECT * FROM usuarios;` para o banco de dados.</li>
+                    <li><strong>Execução (SGBD):</strong> O MySQL executa o comando, coleta todos os dados da tabela `usuarios` e os envia de volta para a API.</li>
+                    <li><strong>Formatação (API em C#):</strong> A API recebe os dados brutos e os converte para um formato universal, geralmente <strong>JSON</strong> (JavaScript Object Notation).</li>
+                    <li><strong>Resposta (API → Frontend):</strong> A API envia os dados em formato JSON de volta para o seu site como uma resposta à requisição inicial.</li>
+                    <li><strong>Exibição (Frontend):</strong> Seu JavaScript recebe os dados JSON e os utiliza para exibir a lista de usuários na tela.</li>
+                </ol>
+                <div class="bg-gray-800 p-4 rounded-lg mt-6">
+                    <p class="text-center font-mono text-sm">
+                        <span class="text-green-400">Frontend</span> 
+                        <span class="text-gray-400">&lt;-- Requisição HTTP --&gt;</span> 
+                        <span class="text-indigo-400">API (C#)</span> 
+                        <span class="text-gray-400">&lt;-- Conexão/SQL --&gt;</span> 
+                        <span class="text-yellow-400">Banco de Dados (MySQL)</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section: Git e GitHub -->
+            <section id="git" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Versionamento com Git e GitHub</h2>
+                <p class="text-gray-300 mb-6">Git e GitHub são ferramentas essenciais para qualquer desenvolvedor. Eles ajudam a controlar as versões do seu código e a colaborar com outras pessoas.</p>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Git vs. GitHub</h3>
+                <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+                    <li><strong>Git:</strong> É o sistema de controle de versão que roda na sua máquina. Ele salva "fotos" (commits) do seu projeto, permitindo que você volte no tempo se algo der errado.</li>
+                    <li><strong>GitHub:</strong> É uma plataforma online (um site) onde você pode hospedar seus projetos Git. É como uma "rede social para códigos", permitindo que você guarde uma cópia de segurança do seu projeto na nuvem e colabore com outros devs.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Instalação e Fluxo Básico</h3>
+                <p class="mb-4">Primeiro, <a href="https://git-scm.com/downloads" target="_blank" class="text-indigo-400 hover:underline">baixe e instale o Git</a>. Depois, o fluxo para enviar seu projeto para o GitHub é:</p>
+                <pre><code class="language-bash"># 1. Inicia um repositório Git na pasta do seu projeto
+git init
+
+# 2. Adiciona todos os arquivos para a próxima "foto" (commit)
+git add .
+
+# 3. Tira a "foto" com uma mensagem descritiva
+git commit -m "Meu primeiro commit: criei a estrutura do projeto"
+
+# 4. (No GitHub) Crie um novo repositório e copie a URL dele.
+# 5. Conecte seu repositório local ao repositório remoto no GitHub
+git remote add origin URL_DO_SEU_REPOSITORIO_NO_GITHUB
+
+# 6. Envie suas alterações (commits) para o GitHub
+git push -u origin main
+</code></pre>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Extra: GitHub Pages</h3>
+                <p class="mt-4">O GitHub Pages é um recurso fantástico que permite hospedar sites estáticos (HTML, CSS, JS) <strong>de graça</strong>, diretamente do seu repositório. O site que você está vendo agora poderia ser hospedado com GitHub Pages! Você só precisa habilitar a opção nas configurações do seu repositório no GitHub.</p>
+
+            </section>
+            
+            <!-- Section: Compêndio -->
+            <section id="compendio" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Compêndio de Termos Técnicos</h2>
+                <p class="text-gray-300 mb-6">Um pequeno dicionário para ajudar a esclarecer alguns termos comuns que você encontrará em sua jornada.</p>
+                <dl class="space-y-4">
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">API (Application Programming Interface)</dt>
+                        <dd class="text-gray-400 mt-1">Uma "ponte" que permite que diferentes sistemas de software se comuniquem entre si, trocando dados e funcionalidades de forma padronizada.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">IDE (Integrated Development Environment)</dt>
+                        <dd class="text-gray-400 mt-1">Um programa que reúne várias ferramentas para facilitar a vida do programador, como editor de código, compilador e depurador. Ex: Visual Studio, VS Code.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">JSON (JavaScript Object Notation)</dt>
+                        <dd class="text-gray-400 mt-1">Um formato de texto leve e de fácil leitura para troca de dados. É o padrão de comunicação em APIs web modernas.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">SGBD (Sistema de Gerenciamento de Banco de Dados)</dt>
+                        <dd class="text-gray-400 mt-1">O software responsável por criar, manter e gerenciar um banco de dados, como o MySQL.</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <!-- Section: Chatbot -->
+            <section id="chatbot" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Tira-Dúvidas com IA</h2>
+                <p class="text-gray-300 mb-6">Tem alguma pergunta rápida sobre C#, MySQL ou programação em geral? Pergunte ao nosso assistente!</p>
+                <div class="bg-gray-800 rounded-lg shadow-lg flex flex-col h-[60vh]">
+                    <div id="chat-window" class="flex-1 p-4 overflow-y-auto flex flex-col">
+                         <div class="chat-bubble ai-bubble">Olá! Sou seu assistente de programação. Como posso ajudar?</div>
+                    </div>
+                    <div class="p-4 bg-gray-700/50 border-t border-gray-600">
+                        <div class="flex items-center space-x-3">
+                            <input type="text" id="chat-input" class="flex-1 bg-gray-600 border border-gray-500 rounded-full px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Digite sua dúvida aqui...">
+                            <button id="send-button" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Logic ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            function showSection(targetId) {
+                contentSections.forEach(section => {
+                    section.id === targetId ? section.classList.remove('hidden') : section.classList.add('hidden');
+                });
+                navLinks.forEach(link => {
+                    link.dataset.target === targetId ? link.classList.add('active') : link.classList.remove('active');
+                });
+                if (mobileNav.value !== targetId) {
+                    mobileNav.value = targetId;
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showSection(e.currentTarget.dataset.target);
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            mobileNav.addEventListener('change', (e) => {
+                showSection(e.target.value);
+                window.scrollTo(0, 0);
+            });
+
+            // --- Chatbot Logic ---
+            const chatWindow = document.getElementById('chat-window');
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-button');
+            const apiKey = ""; // API Key is handled by the environment, leave empty.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            function addMessage(text, sender) {
+                const bubble = document.createElement('div');
+                bubble.className = `chat-bubble ${sender}-bubble`;
+                bubble.textContent = text;
+                chatWindow.appendChild(bubble);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function setLoading(isLoading) {
+                const loadingBubble = document.getElementById('loading-bubble');
+                if (isLoading) {
+                    if (!loadingBubble) {
+                        const newLoadingBubble = document.createElement('div');
+                        newLoadingBubble.id = 'loading-bubble';
+                        newLoadingBubble.className = 'chat-bubble ai-bubble';
+                        newLoadingBubble.innerHTML = '<span class="animate-pulse">Pensando...</span>';
+                        chatWindow.appendChild(newLoadingBubble);
+                        chatWindow.scrollTop = chatWindow.scrollHeight;
+                    }
+                } else {
+                    if (loadingBubble) loadingBubble.remove();
+                }
+            }
+            
+            async function handleSendMessage() {
+                const userPrompt = chatInput.value.trim();
+                if (!userPrompt) return;
+
+                addMessage(userPrompt, 'user');
+                chatInput.value = '';
+                setLoading(true);
+
+                const fullPrompt = `Responda de forma concisa e direta para um iniciante em programação sobre C# ou tópicos relacionados: ${userPrompt}`;
+                const payload = { contents: [{ parts: [{ text: fullPrompt }] }] };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+                    const result = await response.json();
+                    
+                    const aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    addMessage(aiResponse || 'Desculpe, não consegui gerar uma resposta.', 'ai');
+
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    addMessage('Ocorreu um erro ao tentar me comunicar. Verifique o console para mais detalhes.', 'ai');
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            sendButton.addEventListener('click', handleSendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSendMessage();
+            });
+        });
+    </script>
+</body>
+</html>
