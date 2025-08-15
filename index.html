@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="assets/cslogo.svg">
+
     <title>Manual de Programação: C# e MySQL</title>
     
     <!-- Tailwind CSS -->
@@ -72,6 +75,7 @@
                             <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="mysql">MySQL</a>
                             <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="api">API e BD</a>
                             <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="git">Git e GitHub</a>
+                            <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="htmlcssjs">HTML, CSS e JavaScript</a>
                             <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="compendio">Compêndio</a>
                             <a href="#" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" data-target="chatbot">Tira-Dúvidas</a>
                         </div>
@@ -83,6 +87,7 @@
                             <option value="mysql">MySQL</option>
                             <option value="api">API e BD</option>
                             <option value="git">Git e GitHub</option>
+                            <option value="htmlcssjs">HTML, CSS e JavaScript</option>
                             <option value="compendio">Compêndio</option>
                             <option value="chatbot">Tira-Dúvidas</option>
                         </select>
@@ -261,7 +266,17 @@ Console.WriteLine(obj.Publico); // Acessível
                 <h2 class="text-3xl font-bold mb-4 text-indigo-400">Fundamentos de MySQL</h2>
                 <p class="text-gray-300 mb-6">MySQL é o sistema que vai armazenar e gerenciar os dados da sua aplicação.</p>
                 
-                <h3 class="text-2xl font-semibold mt-8 mb-3">1. O que é um SGBD?</h3>
+                <h3 class="text-2xl font-semibold mt-8 mb-3">1. O que é um Banco de Dados?</h3>
+                <p class="mb-4">Um banco de dados é uma coleção organizada de informações estruturadas, armazenadas eletronicamente em um sistema de computador. Os bancos de dados são projetados para facilitar o acesso, gerenciamento e atualização dos dados.</p>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-3">2. Consultas com SQL</h3>
+                <p class="mb-4">SQL (Structured Query Language) é a linguagem padrão para interagir com bancos de dados. Através de "queries" (consultas), podemos realizar diversas operações, como buscar, inserir, atualizar e excluir dados.</p>
+                <p class="mb-4"><strong>Exemplo de consulta SQL:</strong></p>
+                <pre><code class="language-sql">SELECT nome, email FROM usuarios WHERE idade > 25;</code></pre>
+                <p class="mb-4">Esta consulta busca o nome e o email de todos os usuários na tabela "usuarios" que têm mais de 25 anos.</p>
+</selection>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-3">3. O que é um SGBD?</h3>
                 <p class="mb-4">MySQL é um <strong>SGBD (Sistema de Gerenciamento de Banco de Dados)</strong>. Pense nele como um "organizador" super eficiente para seus dados. Suas principais funções são:</p>
                 <ul class="list-disc list-inside text-gray-400 space-y-2">
                     <li><strong>Armazenar dados</strong> de forma segura e estruturada (em tabelas).</li>
@@ -270,8 +285,8 @@ Console.WriteLine(obj.Publico); // Acessível
                     <li><strong>Controlar o acesso</strong>, definindo quem pode ver ou modificar quais informações.</li>
                 </ul>
 
-                <h3 class="text-2xl font-semibold mt-8 mb-3">2. Comandos SQL Essenciais</h3>
-                <p class="mb-4">SQL é a linguagem que usamos para "conversar" com o SGBD. Aqui estão os comandos básicos para manipular uma tabela `usuarios`:</p>
+                <h3 class="text-2xl font-semibold mt-8 mb-3">4. Comandos SQL Essenciais</h3>
+                <p class="mb-4">Aqui estão os comandos básicos para manipular uma tabela `usuarios`:</p>
                 <p class="mb-2"><strong>SELECT:</strong> Para buscar dados.</p>
                 <pre><code class="language-sql">-- Busca todos os usuários da cidade de 'São Paulo'
 SELECT nome, email FROM usuarios WHERE cidade = 'São Paulo';</code></pre>
@@ -287,6 +302,14 @@ UPDATE usuarios SET email = 'novo.email@email.com' WHERE nome = 'Carlos';</code>
                 <p class="mt-4 mb-2"><strong>DELETE:</strong> Para remover dados.</p>
                 <pre><code class="language-sql">-- Remove o usuário 'Carlos' da tabela
 DELETE FROM usuarios WHERE nome = 'Carlos';</code></pre>
+
+                <h3 class="text-2xl font-semibold mt-8 mb-3">5. Instalação e Ferramentas</h3>
+                <p class="mb-4">Para interagir com bancos de dados MySQL, você precisará de algumas ferramentas:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><strong>MySQL Server:</strong> O próprio sistema de banco de dados. Baixe e instale a versão Community Server no <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" class="text-indigo-400 hover:underline">site oficial do MySQL</a>.</li>
+                    <li><strong>MySQL Workbench:</strong> Uma ferramenta gráfica para gerenciar seus bancos de dados MySQL. É excelente para criar tabelas, executar consultas e visualizar seus dados. Baixe-o junto com o servidor ou separadamente no mesmo site.</li>
+                    <li><strong>XAMPP/WAMP/MAMP (Opcional):</strong> Se você planeja desenvolver em outras linguagens (como PHP) ou prefere um pacote completo que inclua Apache, MySQL e PHP, pode usar um desses pacotes. Eles simplificam a instalação de um ambiente de desenvolvimento local.</li>
+                </ul>
             </section>
 
             <!-- Section: API e Banco de Dados -->
@@ -315,6 +338,206 @@ DELETE FROM usuarios WHERE nome = 'Carlos';</code></pre>
                         <span class="text-yellow-400">Banco de Dados (MySQL)</span>
                     </p>
                 </div>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Criando uma API do Zero com .NET CLI</h3>
+                <p class="mb-4">O .NET CLI (Command Line Interface) é uma ferramenta poderosa para criar, construir e executar aplicações .NET a partir da linha de comando. Vamos criar uma API simples passo a passo:</p>
+                <p class="mt-4 mb-2"><strong>IMPORTANTE:</strong></p>
+                <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                    <li>Não esquecer de abrir o vs code na pasta do projeto, ou o projeto será armazenado na pasta errada ou global do seu computador.</li>
+                    <li>Certifique-se de ter o .NET SDK instalado em sua máquina.</li>
+                </ol>
+
+                <p class="mt-4 mb-2"><strong>Passo a passo</strong></p>
+                <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                    <li><strong>Abra o Terminal:</strong> No VS Code, abra o terminal (View &gt; Terminal).</li>
+                    <li><strong>Crie um Novo Projeto:</strong> Use o seguinte comando para criar um novo projeto de API Web:
+                        <pre><code class="language-bash">dotnet new webapi -n MinhaPrimeiraAPI</code></pre>
+                        <p class="mt-2">Isso criará uma pasta chamada <code>MinhaPrimeiraAPI</code> com a estrutura básica de um projeto de API.</p>
+                    </li>
+                    <li><strong>Navegue até a Pasta do Projeto:</strong>
+                        <pre><code class="language-bash">cd MinhaPrimeiraAPI</code></pre>
+                    </li>
+                    <li><strong>Execute o Projeto:</strong>
+                        <pre><code class="language-bash">dotnet run</code></pre>
+                        <p class="mt-2">Isso iniciará a API. Você verá uma mensagem indicando em qual endereço ela está rodando (geralmente <code>http://localhost:5000</code> ou <code>https://localhost:5001</code>).</p>
+                    </li>
+                    <li><strong>Explore a API:</strong> Abra seu navegador e vá para <code>https://localhost:5001/swagger</code> (ou o endereço indicado no terminal). Você verá a interface do Swagger, que permite testar os endpoints da sua API.</li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Entendendo a Estrutura do Projeto</h3>
+                <p class="mb-4">O .NET CLI cria uma estrutura de projeto padrão. Alguns arquivos importantes:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><strong><code>Program.cs</code>:</strong> Ponto de entrada da aplicação. Configura o host da aplicação, os serviços e o pipeline de requisições HTTP.</li>
+                    <li><strong><code>Startup.cs</code> (ou similar em .NET 6+):</strong> Define os serviços que a aplicação usa (como controllers, CORS, Swagger) e como as requisições HTTP são processadas.</li>
+                    <li><strong><code>Controllers</code> Pasta:</strong> Contém os controllers, que são classes que lidam com as requisições HTTP. O exemplo padrão (<code>WeatherForecastController</code>) mostra como retornar dados simples.</li>
+                    <li><strong><code>appsettings.json</code>:</strong> Arquivo de configuração onde você pode armazenar configurações da aplicação, como strings de conexão com o banco de dados.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Modificando o Controller</h3>
+                <p class="mb-4">Vamos modificar o controller padrão para retornar uma lista de usuários:</p>
+                <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                    <li><strong>Crie uma Classe <code>Usuario</code>:</strong> Crie uma nova classe chamada <code>Usuario.cs</code>:
+                        <pre><code class="language-csharp">public class Usuario
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public string Email { get; set; }
+}
+</code></pre>
+                    </li>
+                    <li><strong>Modifique o Controller:</strong> Altere o <code>WeatherForecastController</code> (ou crie um novo) para retornar uma lista de objetos <code>Usuario</code>:
+                        <pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+[ApiController]
+[Route("[controller]")]
+public class UsuariosController : ControllerBase
+{
+    [HttpGet]
+    public IEnumerable&lt;Usuario&gt; Get()
+    {
+        return new List&lt;Usuario&gt;
+        {
+            new Usuario { Id = 1, Nome = "Ana", Email = "ana@email.com" },
+            new Usuario { Id = 2, Nome = "Carlos", Email = "carlos@email.com" }
+        };
+    }
+}
+</code></pre>
+                    </li>
+                    <li><strong>Teste a API:</strong> Execute <code>dotnet run</code> novamente e acesse <code>https://localhost:5001/usuarios</code> no seu navegador. Você verá a lista de usuários em formato JSON.</li>
+                </ol>
+
+                <p class="mb-4">Este é apenas o começo. A partir daqui, você pode adicionar mais endpoints, conectar a um banco de dados MySQL e implementar lógica de negócios mais complexa.</p>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">Exemplo de Código: API Simples em C#</h3>
+                <p class="mb-4">Vamos ver um exemplo simplificado de como seria um controlador de API em C# usando ASP.NET Core, que é um framework popular para construir APIs.</p>
+                <pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient; // Necessário para interagir com MySQL
+using System.Collections.Generic;
+
+[ApiController]
+[Route("[controller]")] // Define a rota base para este controlador (ex: /usuarios)
+public class UsuariosController : ControllerBase
+{
+    private readonly string _connectionString = "Server=localhost;Database=meubanco;Uid=root;Pwd=suasenha;";
+
+    // GET: /usuarios
+    [HttpGet]
+    public IActionResult Get()
+    {
+        List&lt;object&gt; usuarios = new List&lt;object&gt;();
+        using (MySqlConnection conexao = new MySqlConnection(_connectionString))
+        {
+            conexao.Open();
+            string query = "SELECT Id, Nome, Email FROM usuarios";
+            MySqlCommand comando = new MySqlCommand(query, conexao);
+            
+            using (MySqlDataReader reader = comando.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    usuarios.Add(new {
+                        Id = reader.GetInt32("Id"),
+                        Nome = reader.GetString("Nome"),
+                        Email = reader.GetString("Email")
+                    });
+                }
+            }
+        }
+        return Ok(usuarios); // Retorna a lista de usuários como JSON (código 200 OK)
+    }
+
+    // POST: /usuarios
+    [HttpPost]
+    public IActionResult Post([FromBody] Usuario novoUsuario)
+    {
+        using (MySqlConnection conexao = new MySqlConnection(_connectionString))
+        {
+            conexao.Open();
+            string query = "INSERT INTO usuarios (Nome, Email) VALUES (@Nome, @Email)";
+            MySqlCommand comando = new MySqlCommand(query, conexao);
+            comando.Parameters.AddWithValue("@Nome", novoUsuario.Nome);
+            comando.Parameters.AddWithValue("@Email", novoUsuario.Email);
+            comando.ExecuteNonQuery();
+        }
+        return Ok(); // Retorna sucesso (código 200 OK)
+    }
+}
+</code></pre>
+                <p class="mt-4 mb-2"><strong>Observações:</strong></p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li>A string de conexão (<code>_connectionString</code>) deve ser configurada com os dados do seu banco de dados MySQL.</li>
+                    <li>É necessário instalar o pacote NuGet <code>MySql.Data</code> no seu projeto para que a conexão com o MySQL funcione. Você pode fazer isso via CLI:
+                        <pre><code class="language-bash">dotnet add package MySql.Data</code></pre>
+                    </li>
+                    <li><code>IActionResult</code> é um tipo de retorno flexível que permite retornar diferentes tipos de respostas HTTP (Ok, NotFound, BadRequest, etc.).</li>
+                    <li><code>[FromBody]</code> indica que o objeto <code>novoUsuario</code> virá do corpo da requisição HTTP (geralmente em JSON).</li>
+                    <li><code>@Nome</code> e <code>@Email</code> são parâmetros de consulta. Usá-los previne ataques de injeção de SQL, tornando seu código mais seguro.</li>
+                    <li>Para interagir com o banco de dados de forma mais eficiente e utilizando o padrão de projeto Repository, considere adicionar os seguintes pacotes ao seu projeto:</li>
+                    <pre><code class="language-bash">dotnet add package Microsoft.EntityFrameworkCore.Design -v 8.0.6
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 8.0.6
+dotnet add package Swashbuckle.AspNetCore -v 6.4.0</code></pre>    
+                    <li>O pacote <code>Microsoft.EntityFrameworkCore.Design</code> é necessário para executar comandos do Entity Framework Core, como migrations.</li>
+                    <li>O pacote <code>Microsoft.EntityFrameworkCore.SqlServer</code> é o provedor de banco de dados para SQL Server. Se estiver utilizando outro banco de dados, instale o pacote correspondente.</li>
+                    <li>O pacote <code>Swashbuckle.AspNetCore</code> é utilizado para gerar a documentação da API no formato Swagger.</li>
+                </ul>
+
+                <!-- Explique como é feita a conexão da api ao banco de dados através da 'connectionstring' e dê um exemplo prático de código -->
+                <h3 class="text-2xl font-semibold mt-6 mb-3">A Connection String: A Chave para o Banco de Dados</h3>
+                <p class="mb-4">A <strong>connection string</strong> é como um "endereço" completo que sua API usa para encontrar e se conectar ao banco de dados. Ela contém informações cruciais, como:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><strong>Servidor:</strong> O endereço do servidor MySQL (geralmente <code>localhost</code> se estiver rodando na mesma máquina).</li>
+                    <li><strong>Banco de Dados:</strong> O nome do banco de dados que você quer usar.</li>
+                    <li><strong>Usuário:</strong> O nome de usuário com permissão para acessar o banco de dados.</li>
+                    <li><strong>Senha:</strong> A senha do usuário.</li>
+                </ul>
+                <p class="mb-4"><strong>Exemplo de Connection String:</strong></p>
+                <pre><code class="language-csharp">Server=localhost;Database=meubanco;Uid=root;Pwd=minhasenha;</code></pre>
+                <p class="mb-4"><strong>Onde colocar a Connection String?</strong></p>
+                <p class="mb-4">Geralmente, a connection string é armazenada no arquivo <code>appsettings.json</code> do seu projeto. Isso permite que você altere a string sem precisar recompilar o código.</p>
+                <pre><code class="language-json">{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=meubanco;Uid=root;Pwd=minhasenha;"
+  }
+}
+</code></pre>
+                <p class="mb-4"><strong>Como usar a Connection String no código C#:</strong></p>
+                <pre><code class="language-csharp">using Microsoft.Extensions.Configuration; // Importe este namespace
+
+public class UsuariosController : ControllerBase
+{
+    private readonly string _connectionString;
+
+    public UsuariosController(IConfiguration configuration)
+    {
+        _connectionString = configuration.GetConnectionString("DefaultConnection");
+    }
+
+    // Seu código para acessar o banco de dados aqui...
+}
+</code></pre>
+                <p class="mb-4">No exemplo acima, a connection string é lida do arquivo de configuração e armazenada na variável <code>_connectionString</code>. Agora você pode usá-la para abrir uma conexão com o banco de dados:</p>
+                <pre><code class="language-csharp">using MySql.Data.MySqlClient;
+
+public IActionResult Get()
+{
+    using (MySqlConnection conexao = new MySqlConnection(_connectionString))
+    {
+        conexao.Open();
+        // Seu código SQL aqui...
+    }
+}
+</code></pre>
+                <p class="mb-4"><strong>Segurança:</strong></p>
+                <p class="mb-4"><strong>NUNCA</strong> coloque sua connection string diretamente no código-fonte, especialmente se você estiver usando um repositório público como o GitHub. Use variáveis de ambiente ou arquivos de configuração para armazená-la de forma segura.</p>
             </section>
 
             <!-- Section: Git e GitHub -->
@@ -324,32 +547,144 @@ DELETE FROM usuarios WHERE nome = 'Carlos';</code></pre>
 
                 <h3 class="text-2xl font-semibold mt-6 mb-3">Git vs. GitHub</h3>
                 <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
-                    <li><strong>Git:</strong> É o sistema de controle de versão que roda na sua máquina. Ele salva "fotos" (commits) do seu projeto, permitindo que você volte no tempo se algo der errado.</li>
+                    <li><strong>Git:</strong> É o sistema de controle de versão que roda na sua máquina. Ele salva "fotos" (commits) do seu projeto, permitindo que você volte no tempo se algo der errado. É utilizado uma estrutura de pilha para versionar código.</li>
                     <li><strong>GitHub:</strong> É uma plataforma online (um site) onde você pode hospedar seus projetos Git. É como uma "rede social para códigos", permitindo que você guarde uma cópia de segurança do seu projeto na nuvem e colabore com outros devs.</li>
                 </ul>
+                
+                <h3 class="text-2xl font-semibold mt-6 mb-3">GitHub para Iniciantes: Do Zero ao Deploy</h3>
+                <p class="mb-4">Se você nunca usou o GitHub antes, não se preocupe! Vamos começar do início:</p>
 
-                <h3 class="text-2xl font-semibold mt-6 mb-3">Instalação e Fluxo Básico</h3>
-                <p class="mb-4">Primeiro, <a href="https://git-scm.com/downloads" target="_blank" class="text-indigo-400 hover:underline">baixe e instale o Git</a>. Depois, o fluxo para enviar seu projeto para o GitHub é:</p>
-                <pre><code class="language-bash"># 1. Inicia um repositório Git na pasta do seu projeto
-git init
+                <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                    <li><strong>Criando uma Conta:</strong>
+                        <p>Acesse o site do <a href="https://github.com/" target="_blank" class="text-indigo-400 hover:underline">GitHub</a> e crie uma conta gratuita. Você precisará de um e-mail válido e escolher um nome de usuário.</p>
+                    </li>
 
-# 2. Adiciona todos os arquivos para a próxima "foto" (commit)
-git add .
+                    <li><strong>Instalando o Git:</strong>
+                        <p>Git é o sistema de controle de versão que o GitHub usa. <a href="https://git-scm.com/downloads" target="_blank" class="text-indigo-400 hover:underline">Baixe e instale o Git</a> no seu computador. Durante a instalação, aceite as opções padrão (você pode alterá-las depois, se precisar).</p>
+                    </li>
 
-# 3. Tira a "foto" com uma mensagem descritiva
-git commit -m "Meu primeiro commit: criei a estrutura do projeto"
+                    <li><strong>Configurando o Git:</strong>
+                        <p>Abra o terminal (ou Git Bash, se estiver no Windows) e configure seu nome e e-mail. Isso é importante para que seus commits sejam identificados:</p>
+                        <pre><code class="language-bash">git config --global user.name "Seu Nome Completo"
+git config --global user.email "seuemail@example.com"</code></pre>
+                    </li>
 
-# 4. (No GitHub) Crie um novo repositório e copie a URL dele.
-# 5. Conecte seu repositório local ao repositório remoto no GitHub
-git remote add origin URL_DO_SEU_REPOSITORIO_NO_GITHUB
+                    <li><strong>Criando um Repositório:</strong>
+                        <p>Um repositório (ou "repo") é como uma pasta para o seu projeto. No GitHub, clique em "New" (ou no ícone "+", depois "New repository"). Dê um nome ao seu repositório e escolha se ele será público (visível para todos) ou privado (visível apenas para você e quem você convidar).</p>
+                    </li>
 
-# 6. Envie suas alterações (commits) para o GitHub
-git push -u origin main
+                    <li><strong>Enviando seu Projeto para o GitHub:</strong>
+                        <p>Agora, vamos enviar os arquivos do seu projeto para o GitHub. No terminal, navegue até a pasta do seu projeto (use o comando <code>cd</code>). Depois, siga estes passos:</p>
+                        <pre><code class="language-bash">git init                  # Inicia o Git na sua pasta
+git add .                   # Adiciona todos os arquivos
+git commit -m "Primeiro commit"  # Salva as alterações com uma mensagem
+git remote add origin URL_DO_SEU_REPOSITORIO  # Conecta ao GitHub
+git push -u origin main     # Envia os arquivos</code></pre>
+                        <p>Substitua <code>URL_DO_SEU_REPOSITORIO</code> pela URL que o GitHub te deu quando você criou o repositório. Na primeira vez que você usar o <code>git push</code>, o Git pedirá seu nome de usuário e senha do GitHub.</p>
+                    </li>
+
+                    <li><strong>GitHub Pages: Publicando seu Site Gratuitamente:</strong>
+                        <p>O GitHub Pages permite que você publique sites estáticos (HTML, CSS, JavaScript) diretamente do seu repositório. Para fazer isso:</p>
+                        <ol class="list-lower-alpha list-inside space-y-3 text-gray-300">
+                            <li>No seu repositório, vá em "Settings" (Configurações).</li>
+                            <li>Procure pela seção "Pages" (geralmente na barra lateral esquerda).</li>
+                            <li>Em "Source" (Fonte), escolha a branch "main" e a pasta "/ (root)".</li>
+                            <li>Clique em "Save" (Salvar).</li>
+                        </ol>
+                        <p>O GitHub Pages vai construir seu site e te dar um endereço (algo como <code>https://seunome.github.io/nome-do-repositorio</code>). Pode levar alguns minutos para o site ficar online.</p>
+                    </li>
+                </ol>
+
+                <p class="mt-4"><strong>Recursos Adicionais:</strong></p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2">
+                    <li><a href="https://docs.github.com/pt" target="_blank" class="text-indigo-400 hover:underline">Documentação oficial do GitHub</a> (em português).</li>
+                    <li><a href="https://git-scm.com/doc" target="_blank" class="text-indigo-400 hover:underline">Documentação do Git</a> (em inglês).</li>
+                    <li><a href="https://pages.github.com/" target="_blank" class="text-indigo-400 hover:underline">GitHub Pages</a>.</li>
+                </ul>
+            </section>
+
+            <!-- Section: HTML CSS e Javascript -->
+            <section id="htmlcssjs" class="content-section hidden">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400">Fundamentos de HTML, CSS e JavaScript</h2>
+                <p class="text-gray-300 mb-6">HTML, CSS e JavaScript são as tecnologias fundamentais para construir páginas web interativas.</p>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">HTML: A Estrutura da Web</h3>
+                <p class="mb-4">HTML (HyperText Markup Language) é a espinha dorsal de qualquer página web. Ele usa <strong>tags</strong> para estruturar o conteúdo. As tags são como "blocos de construção" que informam ao navegador como exibir o conteúdo.</p>
+                <p class="mb-4"><strong>Como funciona:</strong> O navegador lê o HTML de cima para baixo, interpretando cada tag. A maioria das tags vêm em pares: uma tag de abertura (<code>&lt;tag&gt;</code>) e uma tag de fechamento (<code>&lt;/tag&gt;</code>). O conteúdo entre essas tags é o que será exibido.</p>
+                <p class="mb-4"><strong>Exemplo:</strong></p>
+                <pre><code class="language-html">&lt;h1&gt;Meu Título&lt;/h1&gt; &lt;!-- Define um título de nível 1 --&gt;
+&lt;p&gt;Este é um parágrafo.&lt;/p&gt; &lt;!-- Define um parágrafo de texto --&gt;
+&lt;img src="imagem.jpg" alt="Uma imagem"&gt; &lt;!-- Insere uma imagem --&gt;
+</code></pre>
+                <p class="mb-4">Neste exemplo, <code>&lt;h1&gt;</code> define um título principal, <code>&lt;p&gt;</code> cria um parágrafo, e <code>&lt;img&gt;</code> insere uma imagem. O atributo <code>src</code> na tag <code>&lt;img&gt;</code> especifica o caminho para o arquivo da imagem, e <code>alt</code> fornece um texto alternativo caso a imagem não possa ser carregada.</p>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">CSS: A Beleza da Web</h3>
+                <p class="mb-4">CSS (Cascading Style Sheets) é responsável pela aparência visual do seu site. Ele permite que você controle cores, fontes, layouts e muito mais.</p>
+                <p class="mb-4"><strong>Como funciona:</strong> O CSS usa <strong>seletores</strong> para "encontrar" os elementos HTML que você deseja estilizar. Um seletor pode ser o nome de uma tag (como <code>h1</code> ou <code>p</code>), uma classe (<code>.minha-classe</code>) ou um ID (<code>#meu-id</code>).</p>
+                <p class="mb-4"><strong>Tipos de Seletores:</strong></p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+                    <li><strong>Seletor de Elemento:</strong> Aplica estilos a todos os elementos daquele tipo (ex: <code>h1</code>, <code>p</code>, <code>img</code>).</li>
+                    <li><strong>Seletor de Classe:</strong> Aplica estilos a elementos com um atributo <code>class</code> específico (ex: <code>.destaque</code>).</li>
+                    <li><strong>Seletor de ID:</strong> Aplica estilos a um único elemento com um atributo <code>id</code> específico (ex: <code>#cabecalho</code>). IDs devem ser únicos em uma página.</li>
+                </ul>
+                <p class="mb-4"><strong>Exemplo:</strong></p>
+                <pre><code class="language-css">h1 {
+  color: blue;           /* Define a cor do texto como azul */
+  text-align: center;   /* Centraliza o texto */
+}
+.destaque {
+  font-weight: bold;   /* Define o texto como negrito */
+}
+#cabecalho {
+  background-color: #f0f0f0; /* Define a cor de fundo como cinza claro */
+}
+</code></pre>
+                <p class="mb-4">Neste exemplo, todos os títulos <code>&lt;h1&gt;</code> serão azuis e centralizados. Qualquer elemento com a classe <code>destaque</code> terá o texto em negrito, e o elemento com o ID <code>cabecalho</code> terá um fundo cinza claro.</p>
+
+                <h3 class="text-2xl font-semibold mt-6 mb-3">JavaScript: A Interatividade da Web</h3>
+                <p class="mb-4">JavaScript é a linguagem que dá vida ao seu site. Ele permite que você crie interações, manipule o conteúdo da página e se comunique com servidores.</p>
+                <p class="mb-4"><strong>JavaScript e C#: Uma Analogia:</strong> Se você já conhece C#, pode pensar em JavaScript como um "primo" com algumas diferenças importantes:</p>
+                <ul class="list-disc list-inside text-gray-400 space-y-2 mb-4">
+                    <li><strong>Variáveis:</strong> Em C#, você declara o tipo de uma variável (<code>int</code>, <code>string</code>, etc.). Em JavaScript, você usa <code>let</code>, <code>const</code> ou <code>var</code>. JavaScript é dinamicamente tipada, o que significa que o tipo é verificado em tempo de execução.</li>
+                    <li><strong>Tipos de Dados:</strong> JavaScript tem tipos como <code>number</code>, <code>string</code>, <code>boolean</code>, <code>object</code>, <code>array</code>, <code>null</code> e <code>undefined</code>.</li>
+                    <li><strong>Estruturas de Controle:</strong> As estruturas <code>if/else</code>, <code>for</code>, <code>while</code> são muito semelhantes em C# e JavaScript.</li>
+                    <li><strong>Funções:</strong> Em C#, você tem métodos dentro de classes. Em JavaScript, você tem funções que podem existir independentemente.</li>
+                    <li><strong>JSON:</strong> Ambos C# e JavaScript usam JSON para trocar dados. Em C#, você usa bibliotecas como <code>System.Text.Json</code> para serializar/desserializar objetos. Em JavaScript, você tem os métodos nativos <code>JSON.stringify()</code> e <code>JSON.parse()</code>.</li>
+                </ul>
+                <p class="mb-4"><strong>Exemplo:</strong></p>
+                <pre><code class="language-javascript">// Variáveis
+let nome = "Maria"; // String
+const idade = 30;   // Number (inteiro)
+let altura = 1.75;  // Number (ponto flutuante)
+let estudante = true; // Boolean
+
+// Estrutura de controle
+if (idade >= 18) {
+  console.log("É maior de idade.");
+} else {
+  console.log("É menor de idade.");
+}
+
+// Estrutura de repetição
+for (let i = 0; i &lt; 5; i++) {
+  console.log("Contagem: " + i);
+}
+
+// Manipulando o DOM (HTML)
+document.getElementById("meuBotao").addEventListener("click", function() {
+  alert("Botão clicado!");
+});
+
+// JSON
+let usuario = { nome: "Carlos", email: "carlos@email.com" };
+let jsonUsuario = JSON.stringify(usuario); // Converte objeto para JSON
+console.log(jsonUsuario);
+
+let objUsuario = JSON.parse(jsonUsuario);   // Converte JSON para objeto
+console.log(objUsuario.nome);
 </code></pre>
 
-                <h3 class="text-2xl font-semibold mt-6 mb-3">Extra: GitHub Pages</h3>
-                <p class="mt-4">O GitHub Pages é um recurso fantástico que permite hospedar sites estáticos (HTML, CSS, JS) <strong>de graça</strong>, diretamente do seu repositório. O site que você está vendo agora poderia ser hospedado com GitHub Pages! Você só precisa habilitar a opção nas configurações do seu repositório no GitHub.</p>
-
+                <p class="mt-4">Com HTML, CSS e JavaScript, você pode criar sites completos e dinâmicos. HTML fornece a estrutura, CSS define a aparência, e JavaScript adiciona a interatividade.</p>
             </section>
             
             <!-- Section: Compêndio -->
@@ -372,6 +707,38 @@ git push -u origin main
                     <div class="bg-gray-800 p-4 rounded-lg">
                         <dt class="font-semibold text-lg text-white">SGBD (Sistema de Gerenciamento de Banco de Dados)</dt>
                         <dd class="text-gray-400 mt-1">O software responsável por criar, manter e gerenciar um banco de dados, como o MySQL.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">SQL (Structured Query Language)</dt>
+                        <dd class="text-gray-400 mt-1">A linguagem padrão para interagir com bancos de dados relacionais, permitindo criar, ler, atualizar e deletar dados.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Versionamento</dt>
+                        <dd class="text-gray-400 mt-1">O processo de gerenciar mudanças no código-fonte ao longo do tempo, permitindo rastrear alterações, reverter para versões anteriores e colaborar com outros desenvolvedores.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Git</dt>
+                        <dd class="text-gray-400 mt-1">Um sistema de controle de versão distribuído que permite rastrear alterações no código-fonte ao longo do tempo. É amplamente utilizado para colaboração em projetos de software.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">GitHub</dt>
+                        <dd class="text-gray-400 mt-1">Uma plataforma online que hospeda repositórios Git, facilitando a colaboração entre desenvolvedores e o compartilhamento de código.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Repositório</dt>
+                        <dd class="text-gray-400 mt-1">Um espaço de armazenamento no GitHub onde você pode manter e gerenciar seu código-fonte, documentação e outros arquivos relacionados a um projeto.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Commit</dt>
+                        <dd class="text-gray-400 mt-1">Uma "foto" do estado atual do código-fonte em um determinado momento. Cada commit tem uma mensagem descritiva que explica as mudanças feitas.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Branch</dt>
+                        <dd class="text-gray-400 mt-1">Uma ramificação do código-fonte que permite trabalhar em novas funcionalidades ou correções de bugs de forma isolada. As branches podem ser mescladas (merged) de volta à branch principal quando estiverem prontas.</dd>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <dt class="font-semibold text-lg text-white">Deploy</dt>
+                        <dd class="text-gray-400 mt-1">O processo de disponibilizar uma aplicação ou site para uso público. Isso pode incluir a transferência de arquivos para um servidor, configuração de ambientes e testes finais.</dd>
                     </div>
                 </dl>
             </section>
